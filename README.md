@@ -1,6 +1,6 @@
 # RudeRacoon
 
-> Clone to have a VSCode OpenGL environment.
+> Clone to have a VSCode OpenGL environment.\
 > 🕷 Debugger Ready
 
 ## Initial Setup  
