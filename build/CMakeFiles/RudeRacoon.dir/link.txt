@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\RudeRacoon.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\RudeRacoon.dir/objects.a @CMakeFiles\RudeRacoon.dir\objects1.rsp
+C:\msys64\ucrt64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\RudeRacoon.dir/objects.a -Wl,--no-whole-archive -o RudeRacoon.exe -Wl,--out-implib,libRudeRacoon.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\RudeRacoon.dir\linkLibs.rsp
