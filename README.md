@@ -1,6 +1,7 @@
 # RudeRacoon
 
-> Clone to have a VSCode ready OpenGL template environment.
+> Clone to have a VSCode OpenGL environment.
+> 🕷 Debugger Ready
 
 ## Initial Setup  
 You will need to have the GLFW pre-compiled binaries installed, and the destination of it's folder.\
