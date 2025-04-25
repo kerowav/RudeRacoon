@@ -2,6 +2,26 @@
 
 Clone to have a VSCode ready OpenGL template environment.
 
+Initial Setup
+You will need to have the GLFW pre-compiled binaries installed, and the location to it's folder.
+The location for the binaries used in this project is "C:dev/glfw"
+If you would like to change this you can change the destination in the "cmake/Findglfw3.cmake"
+
+```
+set( _glfw3_HEADER_SEARCH_DIRS
+"/usr/include"
+"/usr/local/include"
+"${CMAKE_SOURCE_DIR}/includes"
+"C:/dev/glfw/include" )          # Change this directory here
+set( _glfw3_LIB_SEARCH_DIRS
+"/usr/lib"
+"/usr/local/lib"
+"${CMAKE_SOURCE_DIR}/lib"
+"C:/dev/glfw/lib-vc2022" )       # Change this directory here
+```
+
+Once the initial setup is complete you should be able to Clone the repo
+
 1.  Open workspace in VSCode
 2.  Use hotkeys: ctrl+shift+p
 3.  Select -> CMake: Configure
