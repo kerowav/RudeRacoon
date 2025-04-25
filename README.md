@@ -5,8 +5,8 @@ Clone to have a VSCode ready OpenGL template environment.
 Initial Setup  
 You will need to have the GLFW pre-compiled binaries installed, and the destination of it's folder.  
 The binaries can be installed from the GLFW website -> https://www.glfw.org/download.html  
-The location for the binaries used in this project is "C:dev/glfw".  
-If you would like to change this you can change the destination in the "cmake/Findglfw3.cmake"
+The destination for the binaries used in this project is "C:dev/glfw".  
+If you would like to change the destination you can edit the "cmake/Findglfw3.cmake" file at the commented lines below.
 
 ```
 set( _glfw3_HEADER_SEARCH_DIRS
