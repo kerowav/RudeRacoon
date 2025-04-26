@@ -5,6 +5,8 @@
 #include <fstream>
 #include <filesystem>
 
+#include "Log.h"
+
 void framebuffer_size_callback(GLFWwindow*, int, int);
 void processInput(GLFWwindow*);
 std::string loadShaderSrc(const char*);
@@ -43,6 +45,8 @@ int main() {
 
     glViewport(0, 0, 800, 600);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+    Log("Starting engine");
 
     while(!glfwWindowShouldClose(window)) {
         processInput(window);
