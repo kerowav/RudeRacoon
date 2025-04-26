@@ -6,7 +6,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(OpenGL REQUIRED)
 find_package(GLFW3 REQUIRED)
 
-add_executable(RudeRacoon src/main.cpp src/glad.c)
+add_executable(RudeRacoon src/main.cpp lib/glad.c lib/stb.cpp)
 
 target_include_directories(RudeRacoon PRIVATE dependencies)
 
