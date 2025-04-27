@@ -9,7 +9,7 @@ find_package(GLFW3 REQUIRED)
 add_library(Includes STATIC src/Log.cpp src/Window.cpp)
 target_include_directories(Includes PRIVATE include)
 
-add_executable(RudeRacoon src/main.cpp lib/glad.c lib/stb.cpp src/Window.cpp)
+add_executable(RudeRacoon src/main.cpp lib/glad.c lib/stb.cpp src/Window.cpp src/Application.cpp)
 
 target_include_directories(RudeRacoon PUBLIC dependencies include)
 

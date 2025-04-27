@@ -9,7 +9,7 @@ void framebuffer_size_callback(GLFWwindow*, int, int);
 namespace RudeRacoon {
   static size_t windowCount = 0;
 
-  Window::Window(int width, int height, const char* title) {
+  Window::Window(int width, int height, const char* title, void(*func)()) {
     if(windowCount == 0) {
       glfwSetErrorCallback([](int error_code, const char* description) {
         std::cout << "Glfw error: " << error_code << "\n" << description << "\n"; 
@@ -20,22 +20,22 @@ namespace RudeRacoon {
       }
     }
     ++windowCount;
+
+    if(func) func();
+
     mWindow = glfwCreateWindow(width, height, title , nullptr, nullptr);
-
-    if(!mWindow) {
-      std::cout << "Failed to create window.\n";
-    }
-
   }
 
   Window::~Window() {
-    if (mWindow) glfwDestroyWindow(mWindow);
-    mWindow = nullptr;
+    if (mWindow) {
+      glfwDestroyWindow(mWindow);
+      mWindow = nullptr;
 
-    --windowCount;
-    if (windowCount == 0) {
-      glfwTerminate();
-      glfwSetErrorCallback(nullptr);
+      --windowCount;
+      if (windowCount == 0) {
+        glfwTerminate();
+        glfwSetErrorCallback(nullptr);
+      }
     }
   }
 

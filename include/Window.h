@@ -6,7 +6,7 @@ namespace RudeRacoon {
   class Window final {
   public:
     Window() = default;
-    Window(int width, int height, const char* title);
+    Window(int width, int height, const char* title, void(*func)() = nullptr);
     ~Window();
     Window(const Window&) = delete;
     Window& operator = (const Window&) = delete;

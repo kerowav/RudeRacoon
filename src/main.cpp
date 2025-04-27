@@ -7,45 +7,68 @@
 
 #include "Log.h"
 #include "Window.h"
+#include "Application.h"
 
 std::string loadShaderSrc(const char*);
 
-int main() {
-    std::cout << "RudeRacoon @_@\n"; 
-    std::cout << "Current working directory: " 
-    << std::filesystem::current_path() << "\n";
+class Engine : public RudeRacoon::Application {
+public:
+    Engine() = default;
+    virtual ~Engine() = default;
 
-    RudeRacoon::Window window = RudeRacoon::Window(800, 600, "RudeRacoon");
-    window.MakeContextCurrent();
-
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        std::cout << "Failed to initialize GLAD\n";
-        return -1;
+    virtual void Init() override {
+        std::cout << "RudeRacoon @_@\n";
+        mWindow = RudeRacoon::Window(800, 600, "RudeRacoon", [](){
+            glfwWindowHint(GLFW_SAMPLES, 4);
+            glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+            glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+            glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        #ifdef __APPLE__
+            glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+        # endif
+        });
+        
+        if(!mWindow.GetWindow()) {
+            std::cout << "Failed to load OpenGL.\n";
+            Stop();
+            return;
+          }
+    
+        mWindow.MakeContextCurrent();
+    
+        if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+            std::cout << "Failed to initialize GLAD\n";
+            Stop();
+            return;
+        }
+    
+        glViewport(0, 0, 800, 600);
+        mWindow.SetFrameBufferSizeCallback();
     }
 
-    glfwWindowHint(GLFW_SAMPLES, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-#ifdef __APPLE__
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-# endif
-
-    glViewport(0, 0, 800, 600);
-    window.SetFrameBufferSizeCallback();
-
-    Log("Starting engine");
-
-    while(!window.ShouldClose()) {
+    virtual void Update() override {
         glfwPollEvents();
-        window.processInput();
+        mWindow.processInput();
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        window.SwapBuffers();   
+        mWindow.SwapBuffers();
+
+        if(mWindow.ShouldClose()) Stop();
     }
+
+    virtual void Destroy() override {
+
+    }
+
+private:
+    RudeRacoon::Window mWindow;
+};
+
+int main() {
+    Engine engine;
+    engine.Start();
     return 0;
 }
 
